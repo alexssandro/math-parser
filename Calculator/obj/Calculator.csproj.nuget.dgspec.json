@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexs\\source\\repos\\Calculator\\Calculator\\Calculator.csproj": {}
+    "C:\\Users\\alexs\\source\\repos\\alexssandro\\math-parser\\Calculator\\Calculator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexs\\source\\repos\\Calculator\\Calculator\\Calculator.csproj": {
+    "C:\\Users\\alexs\\source\\repos\\alexssandro\\math-parser\\Calculator\\Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexs\\source\\repos\\Calculator\\Calculator\\Calculator.csproj",
+        "projectUniqueName": "C:\\Users\\alexs\\source\\repos\\alexssandro\\math-parser\\Calculator\\Calculator.csproj",
         "projectName": "Calculator",
-        "projectPath": "C:\\Users\\alexs\\source\\repos\\Calculator\\Calculator\\Calculator.csproj",
+        "projectPath": "C:\\Users\\alexs\\source\\repos\\alexssandro\\math-parser\\Calculator\\Calculator.csproj",
         "packagesPath": "C:\\Users\\alexs\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexs\\source\\repos\\Calculator\\Calculator\\obj\\",
+        "outputPath": "C:\\Users\\alexs\\source\\repos\\alexssandro\\math-parser\\Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alexs\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,32 +39,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "FluentAssertions": {
-              "target": "Package",
-              "version": "[6.1.0, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[16.9.4, )"
-            },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.0.2, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.4.1, )"
-            },
-            "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.4.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -80,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.1.21458.32\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

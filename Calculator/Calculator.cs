@@ -10,10 +10,10 @@ namespace Calculator
     {
         public bool Success { get; set; }
         public string Error { get; set; }
-        public float Result { get; set; }
+        public double Result { get; set; }
     }
 
-    internal class Calculator
+    public class Calculator
     {
         public static char[] signals = { '+', '-', '*', '/' };
 
@@ -29,7 +29,7 @@ namespace Calculator
                 index++;
                 if (!signals.Contains(digit))
                     numberStr.Append(digit);
-            } while (!signals.Contains(digit) && expression.Count() + 1 <= index);
+            } while (!signals.Contains(digit) && index <= expression.Count() - 1);
 
             return numberStr.ToString();
         }
@@ -73,12 +73,69 @@ namespace Calculator
             if (signals.Contains(Convert.ToChar(items.Last())))
                 return new CalcResult { Success = false, Error = "syntax error, the last digit must be a number" };
 
-            for (char i = signals[signals.Count() - 1]; i >= 0; i--)
-            {
+            double value = 0;
 
+            try
+            {
+                value = CalcRecursively(items);
+            }
+            catch (ArgumentException ex)
+            {
+                if (ex.ParamName == "dividebyzero")
+                    return new CalcResult { Success = false, Error = ex.Message.Replace(" (Parameter 'dividebyzero')", "") };
             }
 
-            return new CalcResult { Success = true, Result = 3 };
+            return new CalcResult { Success = true, Result = value };
+        }
+
+        public static double CalcRecursively(List<object> items)
+        {
+            if (items.Count == 1)
+                return Convert.ToDouble(items[0]);
+
+            double value = 0;
+
+            for (int i = signals.Count() - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < items.Count(); j++)
+                {
+                    if (items[j].GetType() != typeof(System.Double) && Convert.ToChar(items[j]) == signals[i])
+                    {
+                        switch (signals[i])
+                        {
+                            case '/':
+                                if (items[j + 1].Equals(0))
+                                    throw new ArgumentException("Syntax error, division by zero is not possible", "dividebyzero");
+
+                                value = Convert.ToDouble(items[j - 1]) / Convert.ToDouble(items[j + 1]);
+                                items[j - 1] = value;
+                                items.RemoveRange(j, 2);
+                                return CalcRecursively(items);
+                                break;
+                            case '*':
+                                value = Convert.ToDouble(items[j - 1]) * Convert.ToDouble(items[j + 1]);
+                                items[j - 1] = value;
+                                items.RemoveRange(j, 2);
+                                return CalcRecursively(items);
+                                break;
+                            case '+':
+                                value = Convert.ToDouble(items[j - 1]) + Convert.ToDouble(items[j + 1]);
+                                items[j - 1] = value;
+                                items.RemoveRange(j, 2);
+                                return CalcRecursively(items);
+                                break;
+                            case '-':
+                                value = Convert.ToDouble(items[j - 1]) - Convert.ToDouble(items[j + 1]);
+                                items[j - 1] = value;
+                                items.RemoveRange(j, 2);
+                                return CalcRecursively(items);
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+            return value;
         }
     }
 }

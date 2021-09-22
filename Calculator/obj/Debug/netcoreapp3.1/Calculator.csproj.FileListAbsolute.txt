@@ -100,3 +100,12 @@ C:\Users\alexs\source\repos\Calculator\Calculator\obj\Debug\netcoreapp3.1\Calcul
 C:\Users\alexs\source\repos\Calculator\Calculator\obj\Debug\netcoreapp3.1\Calculator.dll
 C:\Users\alexs\source\repos\Calculator\Calculator\obj\Debug\netcoreapp3.1\Calculator.pdb
 C:\Users\alexs\source\repos\Calculator\Calculator\obj\Debug\netcoreapp3.1\Calculator.genruntimeconfig.cache
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\bin\Debug\netcoreapp3.1\Calculator.deps.json
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\bin\Debug\netcoreapp3.1\Calculator.dll
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\bin\Debug\netcoreapp3.1\Calculator.pdb
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.AssemblyInfoInputs.cache
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.AssemblyInfo.cs
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.dll
+C:\Users\alexs\Source\Repos\alexssandro\math-parser\Calculator\obj\Debug\netcoreapp3.1\Calculator.pdb
