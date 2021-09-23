@@ -96,6 +96,15 @@ namespace CalculatorTests
         }
 
         [Fact]
+        public void GivenExpressionWithAllOperatorsShouldBe54()
+        {
+            string expression = "104-52+1*1*4/2";
+            var result = Calculator.Calculator.Calc(expression);
+            result.Success.Should().BeTrue();
+            result.Result.Should().Be(54);
+        }
+
+        [Fact]
         public void GivenExpressionWithNoSignalsShouldReturnError()
         {
             string expression = "13";

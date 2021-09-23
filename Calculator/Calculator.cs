@@ -34,6 +34,45 @@ namespace Calculator
             return numberStr.ToString();
         }
 
+        public static bool CheckParenthesisOpening(string expressionWithParentheses)
+        {
+            int amountOpening = 0;
+
+            foreach (char item in expressionWithParentheses)
+            {
+                if (item == '(')
+                    amountOpening++;
+                if (item == ')')
+                    amountOpening--;
+
+                if (amountOpening < 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static CalcResult CalcWithParentheses(string expressionWithParentheses)
+        {
+            if (!expressionWithParentheses.Contains('(') && expressionWithParentheses.Contains(')'))
+                return Calc(expressionWithParentheses);
+
+            if (expressionWithParentheses.Count(c => c == '(') != expressionWithParentheses.Count(c => c == ')'))
+                return new CalcResult { Success = false, Error = "the number of parentheses opening must be the same as parentheses closing" };
+
+            if (!CheckParenthesisOpening(expressionWithParentheses))
+                return new CalcResult { Success = false, Error = "for every parentheses opening must be an after parentheses closing" };
+
+            int lastOpeningIndex = expressionWithParentheses.LastIndexOf('(');
+            int firstClosingAfterLastOpeningIndex = expressionWithParentheses[lastOpeningIndex..]
+                                                                        .IndexOf(')') + lastOpeningIndex;
+
+            string expressionWithoutParenthesis = expressionWithParentheses.Substring(lastOpeningIndex, firstClosingAfterLastOpeningIndex);
+            expressionWithoutParenthesis = expressionWithoutParenthesis.Replace(")", "").Replace("(", "");
+
+            return null;
+        }
+
         public static CalcResult Calc(string expression)
         {
             if (!expression.Any(e => signals.Contains(e)))
@@ -99,39 +138,33 @@ namespace Calculator
             {
                 for (int j = 0; j < items.Count(); j++)
                 {
-                    if (items[j].GetType() != typeof(System.Double) && Convert.ToChar(items[j]) == signals[i])
+                    if (items[j].GetType() != typeof(double) && Convert.ToChar(items[j]) == signals[i])
                     {
+                        if (signals[i] == '/' && items[j + 1].Equals(0))
+                            throw new ArgumentException("Syntax error, division by zero is not possible", "dividebyzero");
+
+                        double numberBefore = Convert.ToDouble(items[j - 1]);
+                        double numberAfter = Convert.ToDouble(items[j + 1]);
+
                         switch (signals[i])
                         {
                             case '/':
-                                if (items[j + 1].Equals(0))
-                                    throw new ArgumentException("Syntax error, division by zero is not possible", "dividebyzero");
-
-                                value = Convert.ToDouble(items[j - 1]) / Convert.ToDouble(items[j + 1]);
-                                items[j - 1] = value;
-                                items.RemoveRange(j, 2);
-                                return CalcRecursively(items);
+                                value = numberBefore / numberAfter;
                                 break;
                             case '*':
-                                value = Convert.ToDouble(items[j - 1]) * Convert.ToDouble(items[j + 1]);
-                                items[j - 1] = value;
-                                items.RemoveRange(j, 2);
-                                return CalcRecursively(items);
+                                value = numberBefore * numberAfter;
                                 break;
                             case '+':
-                                value = Convert.ToDouble(items[j - 1]) + Convert.ToDouble(items[j + 1]);
-                                items[j - 1] = value;
-                                items.RemoveRange(j, 2);
-                                return CalcRecursively(items);
+                                value = numberBefore + numberAfter;
                                 break;
                             case '-':
-                                value = Convert.ToDouble(items[j - 1]) - Convert.ToDouble(items[j + 1]);
-                                items[j - 1] = value;
-                                items.RemoveRange(j, 2);
-                                return CalcRecursively(items);
+                                value = numberBefore - numberAfter;
                                 break;
                         }
-                        break;
+
+                        items[j - 1] = value;
+                        items.RemoveRange(j, 2);
+                        return CalcRecursively(items);
                     }
                 }
             }
